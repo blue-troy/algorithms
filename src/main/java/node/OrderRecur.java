@@ -10,7 +10,7 @@ package node;
  */
 public class OrderRecur {
     //前序遍历
-    public static void preOrderRecur(Node head) {
+    private static void preOrderRecur(Node head) {
         if (head == null) return;
         System.out.println(head.value + " ");
         preOrderRecur(head.left);
@@ -18,7 +18,7 @@ public class OrderRecur {
     }
 
     //中序遍历
-    public static void inOrderRecur(Node head) {
+    private static void inOrderRecur(Node head) {
         if (head == null) return;
         inOrderRecur(head.left);
         System.out.println(head.value + " ");
@@ -26,7 +26,7 @@ public class OrderRecur {
     }
 
     //后序遍历
-    public static void posOrderRecur(Node head) {
+    private static void posOrderRecur(Node head) {
         if (head == null) return;
         posOrderRecur(head.left);
         posOrderRecur(head.right);

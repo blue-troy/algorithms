@@ -1,5 +1,7 @@
 package node;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -10,7 +12,7 @@ import java.util.Stack;
  * @Description :${todo}
  * @date : 2017/3/6 13:47
  */
-public class order {
+public class Order {
 
     //前序遍历
     public void preOrder(Node head) {
@@ -54,7 +56,7 @@ public class order {
 
     //后序遍历
     public void posOrder(Node head) {
-        if (head==null) return;
+        if (head == null) return;
 
         Stack<Node> s1 = new Stack<>();
         Stack<Node> s2 = new Stack<>();
@@ -63,9 +65,39 @@ public class order {
         s1.push(head);
 
         while (!s1.isEmpty()) {
-            current=s2.push(s1.pop());
-            if (current.left!=null) s1.push(current.left);
-            if (current.right!=null) s1.push(current.right);
+            current = s2.push(s1.pop());
+            if (current.left != null) s1.push(current.left);
+            if (current.right != null) s1.push(current.right);
         }
+    }
+
+    //层次便利
+    private static void levelOrder(Node head) {
+        if (head == null) return;
+
+        Node last = head;
+        Node current = null;
+        Node nLast = null;
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(current);
+        while (!queue.isEmpty()) {
+            current = queue.poll();
+            System.out.println(current);
+
+            if (current.left != null) {
+                queue.add(current.left);
+                nLast = current.left;
+            }
+            if (current.right != null) {
+                queue.add(current.right);
+                nLast = current.right;
+            }
+            if (last == current) {
+                System.out.println();
+                last = nLast;
+            }
+        }
+
     }
 }

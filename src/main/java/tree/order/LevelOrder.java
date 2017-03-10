@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * @author :heyixin
  * @version :3.0
  * @Title :二叉树层次遍历
- * @package :tree.order
+ * @package :tree.Order
  * @Description :根据层次遍历的顺序，每一层都是从左到右的遍历输出，借助于一个队列。
  * 先将根节点入队，当前节点是队头节点，将其出队并访问，如果当前节点的左节点不为空将左节点入队，如果当前节点的右节点不为空将其入队。所以出队顺序也是从左到右依次出队。
  * @date : 2017/3/2 13:07
