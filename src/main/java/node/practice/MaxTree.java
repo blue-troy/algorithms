@@ -20,7 +20,6 @@ public class MaxTree {
 
             result = Math.max(sum, result);
         }
-
         return sum;
     }
 }

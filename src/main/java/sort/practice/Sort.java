@@ -1,5 +1,7 @@
 package sort.practice;
 
+import java.util.Arrays;
+
 import static test.abstractAndInter.InterTest.a;
 
 /**
@@ -54,13 +56,13 @@ public class Sort {
     //归并排序
     public int[] mergeSort(int[] A, int n) {
         // write code here
-        sort(A,0,n-1);
+        sort(A, 0, n - 1);
         return A;
     }
 
     private void sort(int[] data, int left, int right) {
         if (left >= right) return;
-        int mid = (left + right) / 2;
+        int mid = left + (right - left) / 2;
         sort(data, left, mid);
         sort(data, mid + 1, right);
         merge(data, left, mid, right);
@@ -73,10 +75,45 @@ public class Sort {
 
         int i = left, j = mid + 1;
         for (int k = i; k <= right; k++) {
-            if (i>mid) data[k] = copy[j++];//左边用尽取右边
-            else if (j>right) data[k] = copy[i++];//右边用尽取左边
-            else if (copy[i]<copy[j]) data[k] = copy[i++];//哪个小取哪个
+            if (i > mid) data[k] = copy[j++];//左边用尽取右边
+            else if (j > right) data[k] = copy[i++];//右边用尽取左边
+            else if (copy[i] < copy[j]) data[k] = copy[i++];//哪个小取哪个
             else data[k] = copy[j++];
         }
+    }
+
+    //快速排序
+    public int[] quickSort(int[] A, int n) {
+        // write code here
+        quick(A, 0, n - 1);
+        return A;
+    }
+
+    private void quick(int[] a, int low, int height) {
+        if (low >= height) return;
+        int mid = partition(a, low, height);
+        quick(a, low, mid);
+        quick(a, mid + 1, height);
+    }
+
+    private int partition(int[] a, int low, int height) {
+        int key = a[low];
+        while (low < height) {
+            while (a[height] >= key && height > low) height--;
+            a[low] = a[height];
+            while (a[low] <= key && height > low) low++;
+            a[height] = a[low];
+        }
+        a[height] = key;
+
+        return height;
+    }
+
+    public static void main(String[] args) {
+        int[] a = new int[]{1, 2, 5, 8, 0, 43, 76, 89, 23, 65};
+        Sort sort = new Sort();
+        a = sort.mergeSort(a, 10);
+        System.out.println(Arrays.toString(a));
+
     }
 }
