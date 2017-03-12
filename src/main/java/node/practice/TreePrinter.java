@@ -1,8 +1,11 @@
 package node.practice;
 
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by heyixin on 2017/3/10.
@@ -50,6 +53,46 @@ public class TreePrinter {
             }
         }
         return result;
+    }
+
+    public void posPrintTree(TreeNode root) {
+        if (root == null) return;
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        Stack<TreeNode> stack = new Stack<>();
+
+        TreeNode last = root;
+        TreeNode nLast = null;
+        TreeNode current = null;
+
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            current = queue.poll();
+            stack.push(current);
+
+            if (current.left != null) {
+                queue.add(current.left);
+                nLast = current.left;
+            }
+            if (current.right != null) {
+                queue.add(current.right);
+                nLast = current.right;
+            }
+
+            if (current==last) {
+                last = nLast;
+                stack.push(null);
+            }
+
+        }
+        for (TreeNode treeNode : stack) {
+            if (treeNode == null) {
+                System.out.println();
+            } else {
+                System.out.print(treeNode + " ");
+            }
+        }
     }
 }
 
